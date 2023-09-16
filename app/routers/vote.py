@@ -8,7 +8,7 @@ router = APIRouter(prefix="/votes", tags=["Vote"])
 
 
 
-@router.post("/", status_code= status.HTTP_201_CREATED)
+@router.post("", status_code= status.HTTP_201_CREATED)
 def create_posts(vote: schemas.Vote, db: Session = Depends(get_db), current_user: schemas.UserOut= Depends(oauth2.get_current_user)):
 
     post = db.query(models.Post).filter(models.Post.id == vote.post_id).first()

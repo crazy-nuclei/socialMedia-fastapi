@@ -7,7 +7,7 @@ from ..database import get_db
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
-@router.get("/", response_model= List[schemas.PostOut])
+@router.get("", response_model= List[schemas.PostOut])
 def get_posts(db: Session = Depends(get_db), current_user: schemas.UserOut= Depends(oauth2.get_current_user), limit: int = 10, page: int = 0, search: Optional[str]=""):
     # cursor.execute(""" select * from posts """)
     # posts = cursor.fetchall()
@@ -20,7 +20,7 @@ def get_posts(db: Session = Depends(get_db), current_user: schemas.UserOut= Depe
     return posts
 
 
-@router.post("/", status_code= status.HTTP_201_CREATED, response_model=schemas.Post)
+@router.post("", status_code= status.HTTP_201_CREATED, response_model=schemas.Post)
 def create_posts(post: schemas.PostCreate, db: Session = Depends(get_db), current_user: schemas.UserOut= Depends(oauth2.get_current_user)):
     # cursor.execute(""" insert into posts (title, content, published) values(%s, %s, %s) returning * """, (post.title, post.content, post.published))
     # new_post = cursor.fetchone()
