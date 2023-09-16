@@ -4,6 +4,17 @@ on: ["push", "pull_request"]
 
 jobs: 
   job1:
+    environment: 
+      name: Testing
+    env:
+      DATABASE_USERNAME = ${{secret.DATABASE_USERNAME}}
+      DATABASE_PASSWORD = ${{secret.DATABASE_PASSWORD}}
+      DATABASE_HOSTNAME = ${{secret.DATABASE_HOSTNAME}}
+      DATABASE_PORT = ${{secret.DATABASE_PORT}}
+      DATABASE_NAME = ${{secret.DATABASE_NAME}}
+      SECRET_KEY = ${{secret.SECRET_KEY}}
+      ALGORITHM = ${{secret.ALGORITHM}}
+      ACCESS_TOKEN_EXPIRE_MINUTES = ${{secret.ACCESS_TOKEN_EXPIRE_MINUTES}}
     runs-on: macos-latest
     steps: 
       - name: pulling git repo
